@@ -117,6 +117,7 @@ def create_input_pipeline(input_queue, image_size, nrof_preprocess_threads, batc
             image = tf.cond(get_control_flag(control[0], RANDOM_FLIP),
                             lambda:tf.image.random_flip_left_right(image),
                             lambda:tf.identity(image))
+            image = tf.to_float(image)
             image = tf.cond(get_control_flag(control[0], FIXED_STANDARDIZATION),
                             lambda:(tf.cast(image, tf.float32) - 127.5)/128.0,
                             lambda:tf.image.per_image_standardization(image))
