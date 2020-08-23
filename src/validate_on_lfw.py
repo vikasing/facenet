@@ -49,7 +49,6 @@ def main(args):
             
             # Read the file containing the pairs used for testing
             pairs = lfw.read_pairs(os.path.expanduser(args.lfw_pairs))
-
             # Get the paths for the corresponding images
             paths, actual_issame = lfw.get_paths(os.path.expanduser(args.lfw_dir), pairs)
             
@@ -87,7 +86,7 @@ def evaluate(sess, enqueue_op, image_paths_placeholder, labels_placeholder, phas
         embeddings, labels, image_paths, actual_issame, batch_size, nrof_folds, distance_metric, subtract_mean, use_flipped_images, use_fixed_image_standardization):
     # Run forward pass to calculate embeddings
     print('Runnning forward pass on LFW images')
-    
+    print(actual_issame, batch_size)
     # Enqueue one epoch of image paths and labels
     nrof_embeddings = len(actual_issame)*2  # nrof_pairs * nrof_images_per_pair
     nrof_flips = 2 if use_flipped_images else 1
