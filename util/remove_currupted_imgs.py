@@ -5,8 +5,9 @@ import numpy as np
 
 from PIL import Image
 
-#os.remove(path) #Delete file
-#os.removedirs(path) #Delete empty folder
+
+# os.remove(path) #Delete file
+# os.removedirs(path) #Delete empty folder
 
 
 def find_corrupt(folder_path):
@@ -20,10 +21,11 @@ def find_corrupt(folder_path):
                 i_path = data_dir + '/' + fld + '/' + i
                 try:
                     img = Image.open(i_path)
-                    img.verify() # verify that it is, in fact an image
+                    img.verify()  # verify that it is, in fact an image
                 except:
                     print('Bad file:', i_path)
-                    os.remove(i_path) # delete bad file
+                    os.remove(i_path)  # delete bad file
+
 
 if __name__ == "__main__":
     PARSER = argparse.ArgumentParser(description="____")
